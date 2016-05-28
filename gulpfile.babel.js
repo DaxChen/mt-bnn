@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-// generated on 2016-05-27 using generator-chrome-extension 0.5.6
-=======
 // generated on 2016-05-28 using generator-chrome-extension 0.5.6
->>>>>>> master
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import del from 'del';
@@ -18,10 +14,7 @@ gulp.task('extras', () => {
     '!app/scripts.babel',
     '!app/*.json',
     '!app/*.html',
-<<<<<<< HEAD
-=======
     '!app/styles.scss'
->>>>>>> master
   ], {
     base: 'app',
     dot: true
@@ -57,10 +50,7 @@ gulp.task('images', () => {
     })))
     .pipe(gulp.dest('dist/images'));
 });
-<<<<<<< HEAD
 
-gulp.task('html',  () => {
-=======
 gulp.task('styles', () => {
   return gulp.src('app/styles.scss/*.scss')
     .pipe($.plumber())
@@ -73,7 +63,6 @@ gulp.task('styles', () => {
 });
 
 gulp.task('html', ['styles'], () => {
->>>>>>> master
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.sourcemaps.init())
@@ -124,10 +113,7 @@ gulp.task('watch', ['lint', 'babel', 'html'], () => {
   ]).on('change', $.livereload.reload);
 
   gulp.watch('app/scripts.babel/**/*.js', ['lint', 'babel']);
-<<<<<<< HEAD
-=======
   gulp.watch('app/styles.scss/**/*.scss', ['styles']);
->>>>>>> master
   gulp.watch('bower.json', ['wiredep']);
 });
 
