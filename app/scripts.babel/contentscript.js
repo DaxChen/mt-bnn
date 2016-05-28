@@ -1,10 +1,10 @@
 /* global $ */
 console.log('\'Allo \'Allo! Content script')
 
-// console.log(require('vue'))
-// const VueDragula = require('vue-dragula')
-//
-// Vue.use(VueDragula);
+
+const VueDragula = require('vue-dragula')
+
+Vue.use(VueDragula);
 
 $.get(chrome.extension.getURL('/inject.html'), data => {
   $(data).appendTo('body')
@@ -51,6 +51,11 @@ $.get(chrome.extension.getURL('/inject.html'), data => {
       //   this.todos.splice(index, 1)
       // },
     },
+    // created() {
+    //   Vue.vueDragula.options('questionsBag', {
+    //     direction: 'vertical'
+    //   })
+    // },
   })
 })
 

@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="mb-modal-body mb-row">
-    <div class="mb-col-6 mb-modal-body-left">
+    <div class="mb-col-6 mb-modal-body-left" v-dragula="questions" bag="questionsBag">
       <h3>Choose some questions by click or drag-and-drop</h3>
       <ul>
         <li v-for="q in questions" v-on:click="toggleSelect($index)" class="mb-q{{q.selected ? ' mb-q-selected' : ''}}">
@@ -19,7 +19,7 @@
         </li>
       </ul>
     </div>
-    <div class="mb-col-6 mb-modal-body-right">
+    <div class="mb-col-6 mb-modal-body-right" v-dragula="selectedQuestions" bag="questionsBag">
       <div v-if="!selectedQuestions.length" class="mb-selected-showwhenempty">
         Pick some questions from the left, or press the + below to add your own question!
       </div>

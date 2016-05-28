@@ -5,6 +5,11 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import {stream as wiredep} from 'wiredep';
 
+import browserify from 'browserify';
+import babelify from 'babelify';
+import buffer from 'vinyl-buffer';
+import source from 'vinyl-source-stream';
+
 const $ = gulpLoadPlugins();
 
 gulp.task('extras', () => {
@@ -92,11 +97,25 @@ gulp.task('chromeManifest', () => {
 });
 
 gulp.task('babel', () => {
-  return gulp.src('app/scripts.babel/**/*.js')
-      .pipe($.babel({
-        presets: ['es2015']
-      }))
-      .pipe(gulp.dest('app/scripts'));
+  // return gulp.src('app/scripts.babel/**/*.js')
+
+  const b = browserify({
+    entries: 'app/scripts.babel/contentscript.js',
+    transform: babelify,
+    debug: true
+  });
+
+  return b.bundle()
+    .pipe(source('contentscript.js'))
+    .pipe($.plumber())
+    .pipe(buffer())
+    .pipe($.sourcemaps.init({loadMaps: true}))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('app/scripts'));
+      // .pipe($.babel({
+      //   presets: ['es2015']
+      // }))
+      // .pipe(gulp.dest('app/scripts'));
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
