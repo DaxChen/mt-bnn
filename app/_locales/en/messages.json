@@ -4,7 +4,11 @@
     "description": "The name of the application"
   },
   "appDescription": {
+<<<<<<< HEAD
     "message": "My Chrome Extension",
+=======
+    "message": "meeting banana gCal survey prototype",
+>>>>>>> master
     "description": "The description of the application"
   }
 }
