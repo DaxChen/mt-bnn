@@ -1,0 +1,33 @@
+<div class="mb-cover" />
+<div id="mb-vue" class="mb-modal">
+  <span class="mb-close-modal">&times;</span>
+  <div class="mb-modal-header">
+    <h2 style="text-align:center;">Create Meeting Survey</h2>
+    <div>
+      <label>To: </label><input v-model="recipient" />
+    </div>
+    <div>
+      <label>Subject: </label><input v-model="subject" />
+    </div>
+  </div>
+  <div class="mb-modal-body mb-row">
+    <div class="mb-col-6 mb-modal-body-left">
+      <h3>Choose some questions by click or drag-and-drop</h3>
+      <ul>
+        <li v-for="q in questions" v-on:click="toggleSelect($index)" class="mb-q{{q.selected ? ' mb-q-selected' : ''}}">
+          <span>{{ q.text }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="mb-col-6 mb-modal-body-right">
+      <div v-if="!selectedQuestions.length" class="mb-selected-showwhenempty">
+        Pick some questions from the left, or press the + below to add your own question!
+      </div>
+      <ul v-else>
+        <li v-for="idx in selectedQuestions" class="mb-q">
+          <span>{{ $index + 1 + '. ' + questions[idx].text }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
