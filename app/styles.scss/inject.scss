@@ -1,3 +1,5 @@
+@import 'dragula';
+
 .mb-cover {
   position: fixed;
   top: 0;
@@ -5,7 +7,7 @@
   left: 0;
   right: 0;
   background: #000;
-  z-index: 100000000;
+  z-index: 10000;
   display: none;
 }
 
@@ -16,7 +18,7 @@
   left: 30px;
   right: 30px;
   background: #eee;
-  z-index: 100000001;
+  z-index: 10001;
   border: 2px solid #ccc;
   border-radius: 10px;
   // display:none;
@@ -80,13 +82,14 @@
 }
 
 .mb-q {
-  padding: 15px;
   background: #fff;
   // border-left: 1px solid #888;
   // border-right: 1px solid #888;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
   border-radius: 5px;
   margin-bottom: 15px;
+  list-style-type: none;
+  padding: 15px;
 }
 
 .mb-q-selected {
@@ -98,4 +101,12 @@
   color: #666;
   font-size: 24px;
   padding: 30px;
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  top: 20%;
+}
+
+.mb-selected-questions {
+  height: 100%;
 }

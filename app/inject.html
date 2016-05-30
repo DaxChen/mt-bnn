@@ -11,23 +11,25 @@
     </div>
   </div>
   <div class="mb-modal-body mb-row">
-    <div class="mb-col-6 mb-modal-body-left" v-dragula="questions" bag="questionsBag">
+    <div class="mb-col-6 mb-modal-body-left">
       <h3>Choose some questions by click or drag-and-drop</h3>
-      <ul>
-        <li v-for="q in questions" v-on:click="toggleSelect($index)" class="mb-q{{q.selected ? ' mb-q-selected' : ''}}">
+      <ul id="mb-origin-questions" v-dragula="questions" bag="questionsBag">
+        <li v-for="q in questions" v-on:click="selectQuestion($index)" class="mb-q{{q.selected ? ' mb-q-selected' : ''}}">
           <span>{{ q.text }}</span>
         </li>
       </ul>
     </div>
-    <div class="mb-col-6 mb-modal-body-right" v-dragula="selectedQuestions" bag="questionsBag">
+    <div class="mb-col-6 mb-modal-body-right">
       <div v-if="!selectedQuestions.length" class="mb-selected-showwhenempty">
         Pick some questions from the left, or press the + below to add your own question!
       </div>
-      <ul v-else>
+      <ul v-dragula="selectedQuestions" bag="questionsBag" class="mb-selected-questions">
         <li v-for="idx in selectedQuestions" class="mb-q">
-          <span>{{ $index + 1 + '. ' + questions[idx].text }}</span>
+          <!-- <span>{{ $index + 1 + '. ' + questions[idx].text }}</span> -->
+          <span>{{ $index + 1 + '. ' + idx.text }}</span>
         </li>
       </ul>
+      <pre>{{ selectedQuestions | json}}</pre>
     </div>
   </div>
 </div>

@@ -1,17 +1,17 @@
-/* global $ */
+/* global $, Vue */
 console.log('\'Allo \'Allo! Content script')
 
 
 const VueDragula = require('vue-dragula')
 
-Vue.use(VueDragula);
+Vue.use(VueDragula)
 
 $.get(chrome.extension.getURL('/inject.html'), data => {
   $(data).appendTo('body')
   // Or if you're using jQuery 1.8+:
   // $($.parseHTML(data)).appendTo('body');
   // console.log(data)
-  new Vue({
+  new Vue({ // eslint-disable-line
     el: '#mb-vue',
     data: {
       recipient: '',
@@ -37,25 +37,39 @@ $.get(chrome.extension.getURL('/inject.html'), data => {
       //     this.newTodo = ''
       //   }
       // },
-      toggleSelect(index) {
-        const idx = this.selectedQuestions.indexOf(index)
-        if (idx < 0) {
-          this.selectedQuestions.push(index)
-          this.questions[index].selected = true
-        } else {
-          this.selectedQuestions.splice(idx, 1)
-          this.questions[index].selected = false
-        }
+      // toggleSelect(index) {
+      //   const idx = this.selectedQuestions.indexOf(index)
+      //   if (idx < 0) {
+      //     this.selectedQuestions.push(index)
+      //     this.questions[index].selected = true
+      //   } else {
+      //     this.selectedQuestions.splice(idx, 1)
+      //     this.questions[index].selected = false
+      //   }
+      // },
+      selectQuestion(index) {
+        this.selectedQuestions.push(this.questions[index])
+        this.questions.splice(index, 1)
       },
       // removeTodo(index) {
       //   this.todos.splice(index, 1)
       // },
     },
-    // created() {
-    //   Vue.vueDragula.options('questionsBag', {
-    //     direction: 'vertical'
-    //   })
-    // },
+    created() {
+      Vue.vueDragula.options('questionsBag', {
+        // copy(el, source) {
+        //   return source === document.getElementById('mb-origin-questions')
+        // },
+        // accepts(el, target) {
+        //   return target !== document.getElementById('mb-origin-questions')
+        // },
+      })
+    },
+    ready() {
+      // Vue.vueDragula.eventBus.$on('drop', (el, target, source, sibling) => {
+      //
+      // })
+    },
   })
 })
 
@@ -70,6 +84,7 @@ function onAddSurveyClick() {
 }
 
 // a DOM-listener from: http://stackoverflow.com/questions/2844565
+// eslint-disable-next-line
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 
 const observer = new MutationObserver(() => {
