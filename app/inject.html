@@ -3,22 +3,26 @@
   <span class="mb-close-modal">&times;</span>
   <div class="mb-modal-header">
     <h2 style="text-align:center;">Create Meeting Survey</h2>
-    <div>
-      <label>To: </label>
-      <input v-selectize="recipients" settings="recipientsSettings" class="mb-header-recipients" />
+
+    <div class="mb-clearfix-after">
+      <label class="mb-header-input-label">To: </label>
+      <div class="mb-header-input">
+        <input v-selectize="recipients" settings="recipientsSettings" class="mb-header-recipients" />
+      </div>
     </div>
-    <pre>{{ recipients }}</pre>
-    <div>
-      <label>Subject: </label>
-      <input v-model="subject" class="mb-header-subject" />
+
+    <div class="mb-clearfix-after">
+      <label class="mb-header-input-label">Subject: </label>
+      <div class="mb-header-input">
+        <input v-model="subject" class="selectize-input" />
+      </div>
     </div>
-    <pre>{{ subject }}</pre>
   </div>
-  <div class="mb-modal-body mb-row">
+  <div class="mb-modal-body mb-clearfix-after">
     <div class="mb-col-6 mb-modal-body-left">
       <h3>Choose some questions by click or drag-and-drop</h3>
       <ul id="mb-origin-questions" v-dragula="questions" bag="questionsBag">
-        <li v-for="q in questions" v-on:click="selectQuestion($index)" class="mb-q{{q.selected ? ' mb-q-selected' : ''}}">
+        <li v-for="q in questions" v-on:click="selectQuestion($index)" class="mb-q">
           <span>{{ q.text }}</span>
         </li>
       </ul>
