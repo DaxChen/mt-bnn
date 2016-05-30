@@ -5,7 +5,7 @@
     <h2 style="text-align:center;">Create Meeting Survey</h2>
     <div>
       <label>To: </label>
-      <input v-model="recipients" class="mb-header-recipients" />
+      <input v-selectize="recipients" settings="recipientsSettings" class="mb-header-recipients" />
     </div>
     <pre>{{ recipients }}</pre>
     <div>

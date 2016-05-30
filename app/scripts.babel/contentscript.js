@@ -1,9 +1,12 @@
-const $ = require('jquery')
+window.$ = require('jquery')
+const $ = window.$
 require('selectize')
+const selectize = require('vue-selectize')
 console.log('\'Allo \'Allo! Content script')
 
 const VueDragula = require('vue-dragula')
 
+Vue.use(selectize)
 Vue.use(VueDragula)
 
 $.get(chrome.extension.getURL('/inject.html'), data => {
@@ -15,6 +18,16 @@ $.get(chrome.extension.getURL('/inject.html'), data => {
     el: '#mb-vue',
     data: {
       recipients: '',
+      recipientsSettings: {
+        delimiter: ',',
+        persist: false,
+        create(input) {
+          return {
+            value: input,
+            text: input,
+          }
+        },
+      },
       subject: '',
       questions: [
         {
@@ -108,16 +121,16 @@ $.get(chrome.extension.getURL('/inject.html'), data => {
     },
   })
 
-  $('.mb-header-recipients').selectize({
-    delimiter: ',',
-    persist: false,
-    create(input) {
-      return {
-        value: input,
-        text: input,
-      }
-    },
-  })
+  // $('.mb-header-recipients').selectize({
+  //   delimiter: ',',
+  //   persist: false,
+  //   create(input) {
+  //     return {
+  //       value: input,
+  //       text: input,
+  //     }
+  //   },
+  // })
 })
 
 

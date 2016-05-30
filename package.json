@@ -59,6 +59,7 @@
   "dependencies": {
     "jquery": "^2.2.4",
     "selectize": "^0.12.1",
-    "vue-dragula": "^1.0.3"
+    "vue-dragula": "^1.0.3",
+    "vue-selectize": "0.0.3"
   }
 }
