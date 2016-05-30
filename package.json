@@ -45,7 +45,8 @@
       "browser": true
     },
     "globals": {
-      "chrome": true
+      "chrome": true,
+      "Vue": true
     },
     "rules": {
       "eol-last": 0,
@@ -56,6 +57,8 @@
     }
   },
   "dependencies": {
+    "jquery": "^2.2.4",
+    "selectize": "^0.12.1",
     "vue-dragula": "^1.0.3"
   }
 }

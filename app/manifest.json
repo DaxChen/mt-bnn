@@ -30,7 +30,6 @@
         "*://calendar.google.com/*"
       ],
       "js": [
-        "vendor/jquery.min.js",
         "vendor/vue.js",
         "scripts/contentscript.js"
       ],

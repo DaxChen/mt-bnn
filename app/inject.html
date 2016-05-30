@@ -5,12 +5,14 @@
     <h2 style="text-align:center;">Create Meeting Survey</h2>
     <div>
       <label>To: </label>
-      <input v-model="recipientInput" class="mb-header-input" />
+      <input v-model="recipients" class="mb-header-recipients" />
     </div>
+    <pre>{{ recipients }}</pre>
     <div>
       <label>Subject: </label>
-      <input v-model="subject" class="mb-header-input" />
+      <input v-model="subject" class="mb-header-subject" />
     </div>
+    <pre>{{ subject }}</pre>
   </div>
   <div class="mb-modal-body mb-row">
     <div class="mb-col-6 mb-modal-body-left">

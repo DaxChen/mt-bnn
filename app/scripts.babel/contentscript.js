@@ -1,6 +1,6 @@
-/* global $, Vue */
+const $ = require('jquery')
+require('selectize')
 console.log('\'Allo \'Allo! Content script')
-
 
 const VueDragula = require('vue-dragula')
 
@@ -14,8 +14,7 @@ $.get(chrome.extension.getURL('/inject.html'), data => {
   new Vue({ // eslint-disable-line
     el: '#mb-vue',
     data: {
-      recipients: [],
-      recipientInput: '',
+      recipients: '',
       subject: '',
       questions: [
         {
@@ -106,6 +105,17 @@ $.get(chrome.extension.getURL('/inject.html'), data => {
       // Vue.vueDragula.eventBus.$on('drop', (el, target, source, sibling) => {
       //
       // })
+    },
+  })
+
+  $('.mb-header-recipients').selectize({
+    delimiter: ',',
+    persist: false,
+    create(input) {
+      return {
+        value: input,
+        text: input,
+      }
     },
   })
 })
