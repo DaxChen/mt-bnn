@@ -1,5 +1,7 @@
 @import 'dragula';
 
+$modal-z-index: 10000;
+
 .mb-cover {
   position: fixed;
   top: 0;
@@ -7,7 +9,7 @@
   left: 0;
   right: 0;
   background: #000;
-  z-index: 10000;
+  z-index: $modal-z-index - 1;
   display: none;
 }
 
@@ -18,7 +20,7 @@
   left: 30px;
   right: 30px;
   background: #eee;
-  z-index: 10001;
+  z-index: $modal-z-index;
   border: 2px solid #ccc;
   border-radius: 10px;
   // display:none;
@@ -45,7 +47,7 @@
 }
 
 .mb-modal-header {
-  padding: 10px 20px;
+  padding: 0 20px;
   border-bottom: 2px solid #888;
 }
 
@@ -53,12 +55,10 @@
   height: 80%;
 }
 
-.mb-row {
-  ::after {
-    content: '';
-    display: table;
-    clear: both;
-  }
+.mb-row::after {
+  content: '';
+  display: table;
+  clear: both;
 }
 
 .mb-col-6 {
@@ -90,6 +90,11 @@
   margin-bottom: 15px;
   list-style-type: none;
   padding: 15px;
+  box-sizing: border-box;
+
+  // span {
+  //   padding: 15px;
+  // };
 }
 
 .mb-q-selected {
@@ -109,4 +114,14 @@
 
 .mb-selected-questions {
   height: 100%;
+  position: relative;
+  z-index: $modal-z-index + 1;
+}
+
+.mb-radio-group {
+  margin: 10px auto 0 10px;
+
+  label {
+    margin: auto 10px;
+  }
 }

@@ -4,10 +4,12 @@
   <div class="mb-modal-header">
     <h2 style="text-align:center;">Create Meeting Survey</h2>
     <div>
-      <label>To: </label><input v-model="recipient" />
+      <label>To: </label>
+      <input v-model="recipientInput" class="mb-header-input" />
     </div>
     <div>
-      <label>Subject: </label><input v-model="subject" />
+      <label>Subject: </label>
+      <input v-model="subject" class="mb-header-input" />
     </div>
   </div>
   <div class="mb-modal-body mb-row">
@@ -20,16 +22,29 @@
       </ul>
     </div>
     <div class="mb-col-6 mb-modal-body-right">
-      <div v-if="!selectedQuestions.length" class="mb-selected-showwhenempty">
+      <div v-show="!selectedQuestions.length" class="mb-selected-showwhenempty">
         Pick some questions from the left, or press the + below to add your own question!
       </div>
       <ul v-dragula="selectedQuestions" bag="questionsBag" class="mb-selected-questions">
-        <li v-for="idx in selectedQuestions" class="mb-q">
-          <!-- <span>{{ $index + 1 + '. ' + questions[idx].text }}</span> -->
-          <span>{{ $index + 1 + '. ' + idx.text }}</span>
+        <li v-for="q in selectedQuestions" class="mb-q">
+          <!-- <span>{{ $index + 1 + '. ' + questions[q].text }}</span> -->
+          <h4>{{ $index + 1 + '. ' + q.text }}</h4>
+          <div v-if="q.ansType === '12345'" class="mb-radio-group">
+            <label><input type="radio" name="mb-q-radio-{{$index}}" value="male" /> 1  </label>
+            <label><input type="radio" name="mb-q-radio-{{$index}}" value="female" /> 2  </label>
+            <label><input type="radio" name="mb-q-radio-{{$index}}" value="female" /> 3  </label>
+            <label><input type="radio" name="mb-q-radio-{{$index}}" value="female" /> 4  </label>
+            <label><input type="radio" name="mb-q-radio-{{$index}}" value="female" /> 5  </label>
+          </div>
+          <div v-if="q.ansType !== '12345' && q.ansType === 'yes/no'" class="mb-radio-group">
+            <label><input type="radio" name="mb-q-radio-{{$index}}" value="male" /> yes  </label>
+            <label><input type="radio" name="mb-q-radio-{{$index}}" value="female" /> no  </label>
+          </div>
+          <div v-if="q.ansType !== '12345' && q.ansType !== 'yes/no' && q.ansType === 'textarea'" class="mb-radio-group">
+            <textarea rows="3" style="width:100%;"></textarea>
+          </div>
         </li>
       </ul>
-      <pre>{{ selectedQuestions | json}}</pre>
     </div>
   </div>
 </div>

@@ -14,17 +14,54 @@ $.get(chrome.extension.getURL('/inject.html'), data => {
   new Vue({ // eslint-disable-line
     el: '#mb-vue',
     data: {
-      recipient: '',
+      recipients: [],
+      recipientInput: '',
       subject: '',
       questions: [
-        { text: 'How productive was the meeting?', selected: false },
-        { text: 'The meeting objectives were met', selected: false },
-        { text: 'The meeting was the appropriate length of time', selected: false },
-        { text: 'The speakers were easily heard', selected: false },
-        { text: 'The presentation was easily seen', selected: false },
-        { text: 'The right people were invited to the meeting', selected: false },
-        { text: 'The meeting leader(s) effectively moderated the meeting', selected: false },
-        { text: 'The meeting objectives were clearly communicated in advance of the meeting', selected: false },
+        {
+          text: 'How productive was the meeting?',
+          ansType: '12345',
+        },
+        {
+          text: 'The meeting objectives were met',
+          ansType: '12345',
+        },
+        {
+          text: 'The meeting was the appropriate length of time',
+          ansType: '12345',
+        },
+        {
+          text: 'The speakers were easily heard',
+          ansType: '12345',
+        },
+        {
+          text: 'The presentation was easily seen',
+          ansType: '12345',
+        },
+        {
+          text: 'The right people were invited to the meeting',
+          ansType: '12345',
+        },
+        {
+          text: 'The meeting leader(s) effectively moderated the meeting',
+          ansType: '12345',
+        },
+        {
+          text: 'The meeting objectives were clearly communicated in advance of the meeting',
+          ansType: '12345',
+        },
+        {
+          text: 'Did the meeting start on time?',
+          ansType: 'yes/no',
+        },
+        {
+          text: 'Did the meeting end on time?',
+          ansType: 'yes/no',
+        },
+        {
+          text: 'What did you find least effective about the meeting?',
+          ansType: 'textarea',
+        },
       ],
       selectedQuestions: [
       ],
